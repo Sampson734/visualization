@@ -17,6 +17,9 @@ df = df[df['n_participants'] >= 50]
 # Deleting records with missing values
 df = df.dropna()
 
+# Remove extreme values from a column
+df = df[df['mean_ghgs'] < df['mean_ghgs'].quantile(0.99)]
+
 # Selection of the type of diet analysed
 selected_diets = ['fish', 'meat', 'meat100', 'vegetarian']
 df = df[df['diet_group'].isin(selected_diets)]
